@@ -1,4 +1,47 @@
-<h2><%= @restaurant.name %></h2>
-<p><%= @restaurant.address %></p>
-<p><%= @restaurant.phone_number %></p>
-<p><%= @restaurant.category %></p>
+<div class="container">
+<h1><%= @restaurant.name %></h1>
+  <div class="row margin-top-list">
+    <div class="col-xs-12">
+      <div class="display-list card-shadow banner-card">
+        <div class="margin-left-card">
+          <div>
+            <b>Address:</b> <%= @restaurant.address %>
+          </div>
+          <div>
+            <b>Phone Number: </b><%= @restaurant.phone_number %>
+          </div>
+          <div>
+            <b>Category: </b><%= @restaurant.category.capitalize %>
+          </div>
+        </div>
+        <div class="btn-margin-right"> <!-- description -->
+          <%= link_to "Restaurant review", restaurant_reviews_path(@restaurant), class:"btn btn-primary" %>
+          <%= link_to "Edit Restaurant", edit_restaurant_path(@restaurant), class:"btn btn-warning" %>
+          <%= link_to "Delete Restaurant", restaurant_path(@restaurant), method: :delete, data: {confirm: "Are you sure to delete #{@restaurant.name}"},class:"btn btn-danger" %>
+        </div> <!-- /description -->
+      </div>
+      <h3 class="text-center">Reviews</h3>
+      <div class="row">
+        <div class="col-xs-10 col-xs-offset-1">
+          <% @restaurant.reviews.each do |review| %>
+          <li class="display-list card-shadow">
+            <div class="card-review">
+              <h3 class="no-margin-top">
+                <%= "*" * review.rating%>
+              </h3>
+              <p>
+                <%= review.content %>
+              </p>
+            </div>
+            <div class="btn-margin-right"> <!-- description -->
+              <%= link_to "Edit Review", edit_review_path(review), class:"btn btn-warning" %>
+              <%= link_to "Delete Review", review_path(review), method: :delete, data: {confirm: "Are you sure to delete this review"},class:"btn btn-danger" %>
+            </div> <!-- /description -->
+          </li>
+          <% end %>
+        </div>
+      </div>
+      <%= link_to "Add a new Review", new_restaurant_review_path(@restaurant), class:"btn btn-success mybtnclass" %>
+    </div>
+  </div>
+</div>

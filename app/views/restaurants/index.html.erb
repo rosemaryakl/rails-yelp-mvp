@@ -1,7 +1,34 @@
-<% @restaurants.each do |restaurant| %>
-<h2><%= restaurant.name %></h2>
-<p><%= restaurant.address %></p>
-<p><%= restaurant.phone_number %></p>
-<p><%= restaurant.category %></p>
+<div class="container">
+<h1>List of all the restaurants</h1>
+  <div class="row margin-top-list">
+    <div class="col-xs-12">
+      <ul>
+        <% @restaurants.each do |restaurant| %>
+        <li class="display-list card-shadow banner-card">
+          <div class="margin-left-card">
+            <h3 class="no-margin-top">
+              <%= link_to restaurant.name, restaurant_path(restaurant) %>
+            </h3>
+            <div>
+              <%= restaurant.address %>
+            </div>
+            <div>
+              <%= restaurant.phone_number %>
+            </div>
+            <div>
+              <%= restaurant.category.capitalize %>
+            </div>
+          </div>
+          <div class="btn-margin-right"> <!-- description -->
+            <%= link_to "See Reviews", restaurant_reviews_path(restaurant), class:"btn btn-primary" %>
+            <%= link_to "Edit Restaurant", edit_restaurant_path(restaurant), class:"btn btn-warning" %>
+            <%= link_to "Delete Restaurant", restaurant_path(restaurant), method: :delete, data: {confirm: "Are you sure to delete #{restaurant.name}"},class:"btn btn-danger" %>
+          </div> <!-- /description -->
 
-
+        </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+     <%= link_to "Add a new restaurant", new_restaurant_path, class:"btn btn-success mybtnclass" %>
+   </div>

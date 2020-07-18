@@ -3,6 +3,16 @@
 <!-- <form action=""> -->
 <%= simple_form_for [@restaurant, @review] do |f| %>
   <%= f.input :content %>
-
-  <%= f.submit %>
+  <%= f.submit "submit review", class: "btn btn-primary" %>
 <% end %>
+
+<div class="container">
+  <div class="row">
+    <div class="col-xs-6 col-xs-offset-3">
+      <h1>Add a new review</h1>
+    </div>
+    <div class="col-xs-6 col-xs-offset-3">
+      <%= render "form" %>
+    </div>
+  </div>
+</div>
