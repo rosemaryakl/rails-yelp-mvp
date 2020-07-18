@@ -1,0 +1,8 @@
+<h1>Reviews for <%= @restaurant.name %></h1>
+
+<!-- <form action=""> -->
+<%= simple_form_for [@restaurant, @review] do |f| %>
+  <%= f.input :content %>
+
+  <%= f.submit %>
+<% end %>
